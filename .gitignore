@@ -1,0 +1,43 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+
+# Output of `go build` and similar commands
+/build/
+bin/
+*.out
+
+# Go workspace files
+go.work
+go.work.sum
+
+# Go module files (optional to ignore `go.sum`)
+# Uncomment if you want to ignore go.sum
+# go.sum
+
+# Dependency directories (if vendored)
+vendor/
+
+# IDE/editor settings
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Test results
+*.coverprofile
+*.testresult
+*.prof
+
+# Generated files
+gen/
