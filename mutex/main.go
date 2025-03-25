@@ -44,7 +44,7 @@ func example2() {
 	var balance sync.Mutex
 
 	//print out starting values.
-	fmt.Print("Initial account balance: $%d.00", bankBalance)
+	fmt.Printf("Initial account balance: $%d.00", bankBalance)
 
 	//define weekly revenue.
 	incomes := []Income{
