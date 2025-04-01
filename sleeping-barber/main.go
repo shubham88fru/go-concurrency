@@ -37,12 +37,46 @@ func main() {
 	}
 
 	color.Green("The shop is open for the day!")
-	fmt.Println(shop)
 
 	// add barbers.
+	shop.AddBarber("Barber 1")
+	shop.AddBarber("Barber 2")
+	shop.AddBarber("Barber 3")
+	shop.AddBarber("Barber 4")
+	shop.AddBarber("Barber 5")
 
 	// start the barbershop as a goroutine.
+	shopClosing := make(chan bool)
+	closed := make(chan bool)
+
+	go func() {
+		<-time.After(timeOpen)
+		shopClosing <- true
+		shop.closeShopForDay()
+		closed <- true
+
+	}()
+
+	//add clients.
+	i := 1
+
+	go func() {
+		for {
+			randomMilliseconds := rand.Int() % (2 * arrivalRate)
+			select {
+			case <-shopClosing:
+				return
+
+			case <-time.After(time.Millisecond * time.Duration(randomMilliseconds)):
+				shop.addClient(fmt.Sprintf("Client %d", i))
+				i += 1
+
+			}
+		}
+	}()
 
 	// block until the barbershop is closed.
+
+	<-closed
 
 }
